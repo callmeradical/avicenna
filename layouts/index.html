@@ -5,11 +5,31 @@
 	<body>
 		<div class="container wrapper">
 			{{ partial "head.html" . }}
-			{{ partial "introduction.html" . }}
-			{{ partial "projects.html" . }}
-			{{ partial "publications.html" . }}
+
+            <h2> About </h2>
+            {{ partial "introduction.html" . }}
+
+            <ul class="all-posts">
+                {{ if .Site.Params.showposts }}
+                   <h2>Posts</h2>
+                    {{ with .Site.GetPage "/posts"}}
+                        <li><a href="{{.Permalink}}">{{.Title}}</a></li>
+                    {{ end }} 
+                {{ end }}
+
+            {{ with .Site.GetPage "/faq" }} 
+                    <h2>{{.Title}}</h2>
+                    {{ if (.Params.toc )}}
+                    <ul class="flat"> {{.TableOfContents}}</ul>
+                    {{ end }}
+
+                    {{.Content}}
+            {{ end }}
+            
+             {{ partial "resources.html" . }}
+
 		</div>
-		</div>
+
 		{{ partial "footer.html" . }}
 	</body>
 

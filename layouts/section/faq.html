@@ -12,21 +12,20 @@
   <span class="page_title">
     {{ title .Title }}
   </span>
+
   <ul class="flat">
   <li class="page_meta">{{ .Date.Format "January 2, 2006" }}</li>
-  {{ if (.Params.toc) }}
-    {{ .TableOfContents }}
+  
+  {{ if (.Params.toc)}}
+      {{.TableOfContents}}
   {{ end }}
-  </ul>
 
   {{ .Content }}
-{{ partial "resources.html" . }}
+
+  </ul>
+
+  {{ partial "resources.html" . }}
   <a href="{{ .Site.BaseURL }}" title="Home" class="page_meta">Return Home</a>
-</div>
-
-
-<div class="content wrapper">
-  {{ .Content | markdownify }}
 </div>
 
 

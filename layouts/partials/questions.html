@@ -1,0 +1,35 @@
+<div class="introduction">
+	{{ with .Site.Params.questions }}
+	<h4>Frequently Asked Questions</h4>
+	<ul>
+		{{- range $index, $questions_map := $.Site.Params.questions -}}
+
+		{{ range $elem_index, $question := $questions_map.question }}
+		<li>
+			<a href="{{ $question.question_page }}" class="question"> {{ $question.name }}</a>
+
+			{{ if or ($question.code_link) ($question.blog_link) }}
+			<span class="code_blog">
+				{{ with $question.code_link }}
+				[<a href="{{ . }}">code</a>]
+				{{ end }}
+
+				{{ with $question.blog_link }}
+				[<a href="{{ . }}">blog</a>]
+				{{ end }}
+			</span>
+			{{ end }}
+
+			{{ with $question.description }}
+			<span class="question_description">
+				{{ . | markdownify}}
+			</span>
+			{{ end }}
+
+		</li>
+		{{ end }}
+
+		{{- end -}}
+	</ul>
+	{{ end }}
+</div>

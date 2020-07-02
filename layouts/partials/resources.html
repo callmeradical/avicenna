@@ -1,0 +1,35 @@
+<div class="introduction">
+	{{ with .Site.Params.resources }}
+	<h4>Additional Resources</h4>
+	<ul>
+		{{- range $index, $resources_map := $.Site.Params.resources -}}
+
+		{{ range $elem_index, $resource := $resources_map.resource }}
+		<li>
+			<a href="{{ $resource.resource_page }}" class="resource"> {{ $resource.name }}</a>
+
+			{{ if or ($resource.code_link) ($resource.blog_link) }}
+			<span class="code_blog">
+				{{ with $resource.code_link }}
+				[<a href="{{ . }}">code</a>]
+				{{ end }}
+
+				{{ with $resource.blog_link }}
+				[<a href="{{ . }}">blog</a>]
+				{{ end }}
+			</span>
+			{{ end }}
+
+			{{ with $resource.description }}
+			<span class="resource_description">
+				{{ . | markdownify}}
+			</span>
+			{{ end }}
+
+		</li>
+		{{ end }}
+
+		{{- end -}}
+	</ul>
+	{{ end }}
+</div>

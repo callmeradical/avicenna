@@ -2,6 +2,7 @@ baseURL = "https://example.edu"
 languageCode = "en-us"
 title = "Hadi Sinaee"
 theme = "avicenna"
+themeDir = "../../"
 googleAnalytics = "UA-1234-6"
 timeout=3000
 
